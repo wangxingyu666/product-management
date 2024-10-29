@@ -4,8 +4,10 @@ package top.wangxingyu.product.api.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.wangxingyu.product.api.entity.Product;
 import top.wangxingyu.product.api.service.ProductService;
+import top.wangxingyu.product.api.utils.OssUtil;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
+    private final OssUtil ossUtil;
 
     @GetMapping
     public List<Product> getAllProducts(){
@@ -30,6 +33,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Boolean createProduct(@RequestBody Product product){
         return productService.save(product);
     }
@@ -45,5 +49,11 @@ public class ProductController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Boolean deleteProduct(@PathVariable Long id){
         return productService.removeById(id);
+    }
+
+    @PostMapping("/upload")
+    public String uploadFile(@RequestParam("file")MultipartFile file){
+        System.out.println(file.getOriginalFilename());
+        return ossUtil.uploadFile(file);
     }
 }
