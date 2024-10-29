@@ -21,6 +21,6 @@ server:
 aliyun:
   oss:
     endpoint: https://oss-cn-nanjing.aliyuncs.com
-    accessKeyId: LTAI5t8rJwPFnSmdGQJK8LSw
-    accessKeySecret: bcY5wjfoHOkDWJwkk3iFhI6ojURfus
+    accessKeyId: 
+    accessKeySecret:
     bucketName: my-wxy-bucket
