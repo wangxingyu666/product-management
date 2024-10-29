@@ -1,4 +1,4 @@
-package top.wangxingyu.config;
+package top.wangxingyu.product.api.config;
 
 
 import org.springframework.context.annotation.Bean;
